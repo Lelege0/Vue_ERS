@@ -1,2 +1,5 @@
 [0417/101845.243:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: ï¿½Üµï¿½ï¿½Ñ½ï¿½ï¿½ï¿½ï¿½ï¿½ (0x6D)
 [0417/103657.582:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: ï¿½Üµï¿½ï¿½Ñ½ï¿½ï¿½ï¿½ï¿½ï¿½ (0x6D)
+[0417/193619.599:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: ¹ÜµÀÒÑ½áÊø¡£ (0x6D)
+[0418/154829.187:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: ¹ÜµÀÒÑ½áÊø¡£ (0x6D)
+[0429/154450.135:ERROR:registration_protocol_win.cc(84)] TransactNamedPipe: ¹ÜµÀÒÑ½áÊø¡£ (0x6D)
