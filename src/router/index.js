@@ -18,86 +18,95 @@ import PwdManage from "../components/Setting/BasicInfo/PwdManage";
 import Daliy_info from "../components/InfoTotal/Allinfo/Daliy_info";
 import Health_info from "../components/InfoTotal/Allinfo/Health_info";
 import Outer_info from "../components/InfoTotal/Allinfo/Outer_info";
+import Handle from "../components/Setting/Handle";
+import DailyClock_ from "../components/Info/DailyClock_";
 
 Vue.use(VueRouter)
-
-
 const vueRouter = new VueRouter({
-  routes:[
-    { path: '/',redirect: '/login' },
-    {path: '/login',component: Login},
-    {path: '/register',component: Register},
-    {
-      path: '/home',
-      component: Home,
-      redirect: '/dashboard',
-      children: [
+    routes: [
+        {path: '/', redirect: '/login'},
+        {path: '/login', component: Login},
+        {path: '/register', component: Register},
         {
-          path: '/dashboard',
-          component:Dashboard
-        },
-        {
-          path: '/users',
-          component: User
-        },
-        {
-          path: '/logs',
-          component: Logs
-        },
-        {
-          path: '/account_setting',
-          component: AccountSetting,
-          redirect: '/basic_info',
-          children:[
-            {
-              path: '/basic_info',
-              component: BInfo
-            },
-            {
-              path: '/password_manage',
-              component: PwdManage
-            }
-          ]
-        },
-        {
-          path: '/content_setting',
-          component: ContentSetting,
-        },
-        {
-          path: '/info_sum',
-          component: InfoSummary
-        },
-        {
-          path: '/info_analyse',
-          component: InfoAnalyse
-        },
-        {
-          path: '/daily_clock',
-          component: DailyClock
-        },
-        {
-          path: '/health_info',
-          component: HealthInfo
-        },
-        {
-          path: '/outer_people',
-          component: OuterPeople
-        },
-        {
-          path: '/daily_info_sum',
-          component: Daliy_info
-        },
-        {
-          path: '/health_info_sum',
-          component: Health_info
-        },
-        {
-          path: '/outer_info_sum',
-          component: Outer_info
+            path: '/home',
+            component: Home,
+            name: 'home',
+            redirect: '/dashboard',
+            children: [
+                {
+                    path: '/dashboard',
+                    component: Dashboard
+                },
+                {
+                    path: '/users',
+                    component: User
+                },
+                {
+                    path: '/logs',
+                    component: Logs
+                },
+                {
+                    path: '/account_setting',
+                    component: AccountSetting,
+                    redirect: '/basic_info',
+                    children: [
+                        {
+                            path: '/basic_info',
+                            component: BInfo
+                        },
+                        {
+                            path: '/password_manage',
+                            component: PwdManage
+                        }
+                    ]
+                },
+                {
+                    path: '/content_setting',
+                    component: ContentSetting,
+                },
+                {
+                    path: '/info_sum',
+                    component: InfoSummary
+                },
+                {
+                    path: '/info_analyse',
+                    component: InfoAnalyse
+                },
+                {
+                    path: '/daily_clock',
+                    component: DailyClock
+                },
+                {
+                    path: '/health_info',
+                    component: HealthInfo
+                },
+                {
+                    path: '/outer_people',
+                    component: OuterPeople
+                },
+                {
+                    path: '/daily_info_sum',
+                    component: Daliy_info
+                },
+                {
+                    path: '/health_info_sum',
+                    component: Health_info
+                },
+                {
+                    path: '/outer_info_sum',
+                    component: Outer_info
+                },
+                {
+                    path: '/handle_on',
+                    component: Handle
+                },
+                {
+                    path: '/daily_on',
+                    component: DailyClock_
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 })
 
 export default vueRouter

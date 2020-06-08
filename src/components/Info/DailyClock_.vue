@@ -33,7 +33,7 @@
                     <el-input v-model="ruleForm.phone">
                     </el-input>
                 </el-form-item>
-                <el-button type="primary" size="default" style="margin-left: 380px; width: 150px">发布</el-button>
+                <el-button type="primary" size="default" style="margin-left: 380px; width: 150px">提交</el-button>
             </el-form>
             <div style="font-size: 14px; color: red">注：*为必填项</div>
         </el-card>

@@ -6,7 +6,7 @@
             <el-breadcrumb-item>设置</el-breadcrumb-item>
             <el-breadcrumb-item>内容设置</el-breadcrumb-item>
         </el-breadcrumb>
-        <el-card style="height: 550px">
+        <el-card style="height: 555px">
             <el-card class="card_se" shadow="hover" @click.native="dailyClock">
                 <div class="div1">
                     日常打卡<br><br><br><br><br>

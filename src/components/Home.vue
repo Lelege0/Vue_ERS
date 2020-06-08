@@ -1,11 +1,11 @@
 <template>
     <el-container>
-        <el-header>
+        <el-header style="padding: 0 20px 0 0">
             <div>
                 <img src="../assets/logo1.png" alt="">
-                <span class="title">疫情上报系统</span>
+                <span class="title" style="font-size: 28px">疫情上报系统</span>
             </div>
-            <span style="color:white;">欢迎你！</span>
+            <span style="color:white;margin-left: 1050px;padding-top: 8px;font-size: 28px">欢迎你！</span>
             <el-dropdown>
                 <el-button type="primary" style="background-color: #2b2f3a;
                 border: 0px;height: 60px;width: 80px; align-items: center;padding: 0px;margin: 0px">
@@ -13,26 +13,27 @@
                     <i class="el-icon-arrow-down el-icon--right"></i>
                 </el-button>
                 <el-dropdown-menu slot="dropdown">
-                    <router-link to="/dashboard"  style="text-decoration: none">
+                    <router-link to="/dashboard" style="text-decoration: none">
                         <el-dropdown-item>首页</el-dropdown-item>
                     </router-link>
                     <el-dropdown-item @click.native="logout">退出</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
-
         </el-header>
         <el-container>
             <el-aside :width="isCollapse ? '64px' : '200px'">
-                <div class="toggle-button" @click="toggleCollapse"><div :class="isCollapse ? 'el-icon-s-unfold': 'el-icon-s-fold'"></div></div>
+                <div class="toggle-button" @click="toggleCollapse">
+                    <div :class="isCollapse ? 'el-icon-s-unfold': 'el-icon-s-fold'"></div>
+                </div>
                 <!--侧边菜单-->
                 <el-menu :unique-opened="true" background-color="#304156" text-color="#fff"
                          :default-active="activePath" :collapse-transition="false"
-                         :collapse="isCollapse" :router="true" >
+                         :collapse="isCollapse" :router="true">
                     <el-menu-item index="/dashboard">
-                            <i class="el-icon-s-home"></i>
-                            <span slot="title">Dashboard</span>
+                        <i class="el-icon-s-home"></i>
+                        <span slot="title">Dashboard</span>
                     </el-menu-item>
-                    <el-submenu index="2">
+                    <el-submenu index="2" :hidden="flag">
                         <template slot="title">
                             <i class="el-icon-s-management"></i>
                             <span slot="title">系统管理</span>
@@ -55,9 +56,13 @@
                             <i class="el-icon-s-help"></i>
                             <span slot="title">账号设置</span>
                         </el-menu-item>
-                        <el-menu-item index="/content_setting">
+                        <el-menu-item index="/content_setting" :hidden="flag">
                             <i class="el-icon-s-order"></i>
                             <span slot="title">设置内容</span>
+                        </el-menu-item>
+                        <el-menu-item index="/handle_on" :hidden="flag1">
+                            <i class="el-icon-s-order"></i>
+                            <span slot="title">上报信息</span>
                         </el-menu-item>
                     </el-submenu>
                     <el-submenu index="4">
@@ -65,7 +70,7 @@
                             <i class="el-icon-s-platform"></i>
                             <span slot="title">信息综合</span>
                         </template>
-                        <el-menu-item index="/info_sum">
+                        <el-menu-item index="/info_sum" :hidden="flag">
                             <i class="el-icon-menu"></i>
                             <span slot="title">信息汇总</span>
                         </el-menu-item>
@@ -79,10 +84,10 @@
             <!--右侧内容主题-->
             <el-container>
                 <el-main>
-                <!--路由占位符-->
-                <router-view></router-view>
-            </el-main>
-                <el-footer style="height: 20px;background-color: #fff;box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
+                    <!--路由占位符-->
+                    <router-view></router-view>
+                </el-main>
+                <el-footer style="height: 25px;background-color: #fff;box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1)">
                     ©2020 Lelege技术支持 Powered by WeAreHeroes
                 </el-footer>
             </el-container>
@@ -93,75 +98,106 @@
 <script>
     export default {
         name: 'home',
-        data(){
-            return{
+        data() {
+            return {
                 isCollapse: false,
                 index: '',
-                activePath: '/dashboard'
+                activePath: '/dashboard',
+                name: '',
+                flag: false,
+                flag1: false
             }
         },
-        methods:{
-            logout(){
+        methods: {
+            logout() {
                 window.sessionStorage.clear()
                 this.$router.push('/login')
             },
             // 点击按钮切换菜单的折叠与展开
-            toggleCollapse () {
+            toggleCollapse() {
                 this.isCollapse = !this.isCollapse
+                console.log(this.$route.query.username)
+            },
+            panduan(){
+                if(this.name == 'admin'){
+                    this.flag = false
+                    this.flag1 = true
+                }else if(this.name == 'work'){
+                    this.flag  = true
+                    this.flag1 = false
+                }else if(this.name == 'leader'){
+                    this.flag = true
+                    this.flag1 = true
+                }
             }
+        },
+        mounted() {
+            this.name = this.$route.query.username
+            this.panduan()
         }
     }
 </script>
 
 <style lang="less">
-    .el-container{
+    .el-container {
         background-color: #304156;
         height: 100%;
     }
-    .el-header{
+
+    .el-header {
         width: 100%;
         background-color: #2b2f3a;
         display: flex;
         justify-content: space-between;
-        padding-left: 0px;
+        /*padding-left: 0px;*/
         /*padding: 0px;*/
+        /*padding: 0;*/
         font-size: 30px;
-        > div{
+
+        > div {
             display: flex;
             align-items: center;
             color: white;
         }
     }
-    .el-aside{
+
+    .el-aside {
         background-color: #304156;
         height: 100%;
+
         .el-menu {
             border-right: none;
         }
     }
-    .title{
+
+    .title {
         margin-left: 10px;
     }
-    .el-main{
+
+    .el-main {
         background-color: #fffffb;
     }
-    .toggle-button{
+
+    .toggle-button {
         background-color: #4A5064;
         text-align: center;
         cursor: pointer;
         align-items: center;
     }
-    .el-icon-s-fold{
+
+    .el-icon-s-fold {
         height: 100%;
         width: 40px;
         text-align: center;
     }
-    .el-icon-s-unfold{
+
+    .el-icon-s-unfold {
         height: 100%;
         width: 40px;
         text-align: center;
     }
-    .Dashboard{
+
+    .Dashboard {
         width: 0px;
         height: 0px;
     }
